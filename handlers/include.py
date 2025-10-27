@@ -1,13 +1,15 @@
 import logging
 
 from aiogram import Dispatcher
-from handlers import start, test_type, echo, filters
+from handlers import start, test_type, echo, filters, menu, fs
 
 # Порядок имеет значение, так как хэндлеры обрабатываются в порядке их добавления
 handlers_list = [
     start,
     filters,
     test_type,
+    fs,
+    menu,
     echo
 ]
 
