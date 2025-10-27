@@ -1,7 +1,7 @@
 import logging
 
 from aiogram import Dispatcher
-from handlers import start, test_type, echo, filters, menu, fs, base_button
+from handlers import start, test_type, echo, filters, menu, fs, base_button, inline_button, callback_factory
 
 # Порядок имеет значение, так как хэндлеры обрабатываются в порядке их добавления
 handlers_list = [
@@ -11,6 +11,8 @@ handlers_list = [
     fs,
     menu,
     base_button,
+    inline_button,
+    callback_factory,
     echo
 ]
 

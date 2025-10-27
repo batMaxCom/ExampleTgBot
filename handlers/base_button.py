@@ -1,5 +1,4 @@
 # то, что цепляется к низу экрана вашего устройства - обычные кнопки
-# то, что цепляется непосредственно к сообщениям - инлайн-кнопки
 from aiogram import Router, F
 from aiogram.filters import Command
 from aiogram.types import Message, KeyboardButton, ReplyKeyboardMarkup, ReplyKeyboardRemove, KeyboardButtonPollType, \
@@ -87,7 +86,7 @@ async def cmd_special_buttons(message: Message):
             text="Выбрать премиум пользователя",
             request_user=KeyboardButtonRequestUser(
                 request_id=1,
-                user_is_premium=True
+                user_is_premium=False
             )
         ),
         KeyboardButton(
@@ -105,11 +104,8 @@ async def cmd_special_buttons(message: Message):
     )
 
 # Примеры обработчиков на кнопки о геолокации и пользователе
-@router.message(F)
-
-
 @router.message(F.location)
-async def on_user_shared(message: Message):
+async def on_location_shared(message: Message):
     await message.answer(
         (
             f"Latitude: {message.location.latitude}\n"
@@ -118,9 +114,9 @@ async def on_user_shared(message: Message):
     )
 
 
-@router.message(F.chat_shared)
+@router.message(F.user_shared)
 async def on_user_shared(message: Message):
     print(
-        f"Request {message.chat_shared.request_id}. "
-        f"User ID: {message.chat_shared.chat_id}"
+        f"Request {message.user_shared.request_id}\n"
+        f"User ID: {message.user_shared.user_id}"
     )
