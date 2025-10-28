@@ -6,6 +6,7 @@ from aiogram.exceptions import TelegramBadRequest
 from aiogram.filters import Command
 from aiogram.types import Message,InlineKeyboardButton, CallbackQuery, InlineKeyboardMarkup
 
+from keyboard.example_kb import get_keyboard
 
 router = Router()
 
@@ -66,19 +67,6 @@ async def send_random_value(callback: CallbackQuery): # Инициализиру
 
 # region ----------------------------------- Пример ----------------------------------------------
 user_data = {}
-
-def get_keyboard():
-    """ Инициализация клавиатуры """
-    buttons = [
-        [
-            InlineKeyboardButton(text="-1", callback_data="num_decr"),
-            InlineKeyboardButton(text="+1", callback_data="num_incr")
-        ],
-        [InlineKeyboardButton(text="Подтвердить", callback_data="num_finish")]
-    ]
-    keyboard = InlineKeyboardMarkup(inline_keyboard=buttons)
-    return keyboard
-
 
 async def update_num_text(message: Message, new_value: int):
     """ Редактирование текста сообщения """
